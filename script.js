@@ -5,14 +5,14 @@
 
 // function searchLocation(c) {
 //     // const openWeatherKey = "f4f8a8841a8bb6f1dfdf8bc15c1087b0";
-    
+
 //     // // "http://api.openweathermap.org/geo/1.0/direct"
 //     // // "?"
 //     // // "q={city name},{state code},{country code}"
 //     // // "&limit={limit}"
 //     // // "&appid={API key}"
-    
-    
+
+
 //     try {
 //         let opt = {
 //             center: c,
@@ -23,8 +23,8 @@
 //         map.setView(c)
 //         console.log(map);
 //     }
-    
-    
+
+
 //     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //         maxZoom: 19,
 //         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -39,7 +39,9 @@ txtLocation.addEventListener('keydown', (e) => {
 
 function searchLocation() {
     const location = txtLocation.value;
-    if (location) getLocation(location).then();
+    if (location) {
+        
+    }
 }
 
 async function getLocation(location) {
@@ -50,8 +52,12 @@ async function getLocation(location) {
     url += "&appid=";
     url += openWeatherKey;
     const response = await fetch(url);
-    const data = await response.json()
-    console.log(data)
+    const jsonData = await response.json();
+    const data = jsonData[0];
+    return data;
 }
 
-getLocation("Rio de Janeiro");
+function aaaa() {
+    txtLocation.value = "Rio de Janeiro";
+    searchLocation();
+}
