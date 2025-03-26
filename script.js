@@ -1,4 +1,4 @@
-let map;
+let map, marker;
 const txtLocation = document.getElementById("txtLocation");
 txtLocation.addEventListener('keydown', (e) => {
     if (e.code == "Enter") searchLocation();
@@ -18,7 +18,7 @@ function searchLocation() {
             let coord = [data.lat, data.lon];
             setMap(coord)
 
-            
+
         });
     }
 }
@@ -37,15 +37,18 @@ async function getLocation(location) {
 }
 
 function setMap(coord) {
-    try {
-        map = L.map('map', {
-            center: coord,
-            zoom: 13,
-        });
-    } catch (error) {
-        map.setView(coord)
-        console.log(map);
+    let opt = {
+        center: coord,
+        zoom: 13,
     }
+    try {
+        map = L.map('map', opt);
+    } catch (error) {
+        map.setView(opt.center, opt.zoom);
+    }
+
+    if (marker != undefined) map.removeLayer(marker);
+    marker = L.marker(opt.center).addTo(map);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -53,4 +56,4 @@ function setMap(coord) {
     }).addTo(map);
 }
 
-setMap([0,0])
+setMap([0, 0]);
