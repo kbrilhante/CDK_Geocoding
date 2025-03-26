@@ -12,8 +12,13 @@ function searchLocation() {
             txtLocation.value += data.state ? data.state + "," : ""
             txtLocation.value += data.country;
 
+            document.getElementById("txtLatitude").value = data.lat;
+            document.getElementById("txtLongitude").value = data.lon;
+
             let coord = [data.lat, data.lon];
             setMap(coord)
+
+            
         });
     }
 }
@@ -47,3 +52,5 @@ function setMap(coord) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 }
+
+setMap([0,0])
