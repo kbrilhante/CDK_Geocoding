@@ -39,5 +39,19 @@ txtLocation.addEventListener('keydown', (e) => {
 
 function searchLocation() {
     const location = txtLocation.value;
-    if (location) console.log(location);
+    if (location) getLocation(location).then();
 }
+
+async function getLocation(location) {
+    const openWeatherKey = "f4f8a8841a8bb6f1dfdf8bc15c1087b0";
+    let url = "http://api.openweathermap.org/geo/1.0/direct";
+    url += "?q=";
+    url += location;
+    url += "&appid=";
+    url += openWeatherKey;
+    const response = await fetch(url);
+    const data = await response.json()
+    console.log(data)
+}
+
+getLocation("Rio de Janeiro");
