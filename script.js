@@ -44,7 +44,7 @@ function searchLocation() {
 
 async function getLocation(location) {
     const openWeatherKey = "f4f8a8841a8bb6f1dfdf8bc15c1087b0";
-    let url = "http://api.openweathermap.org/geo/1.0/direct";
+    let url = "https://api.openweathermap.org/geo/1.0/direct";
     url += "?q=";
     url += location;
     url += "&appid=";
