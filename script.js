@@ -56,4 +56,4 @@ function setMap(coord) {
     }).addTo(map);
 }
 
-setMap([0, 0]);
+setMap([0,0]);
